@@ -1,7 +1,14 @@
+<p>hey :<%= p session[:name]  %></p>
+<p>Your last results :<%= p session[:results]  %></p>
+<hr>
 
 <h1> Welcome to the longest word-game ! </h1>
 <p>Here is your grid :<p>
 <p><%= @grid.join(" ") %><p>
+
+
+
+
 
 
 
@@ -12,5 +19,6 @@
   <input type="hidden" name="grid" value="<%= @grid.join(" ")%>">
   <input type="submit" value="Let's go !">
 </form>
+
 
 

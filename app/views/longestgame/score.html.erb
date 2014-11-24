@@ -1,5 +1,14 @@
+<p>hay :<%= p session[:name]  %></p>
+<p>Your last results :<%= p session[:results]  %></p>
+
+
+<hr>
+
 <h1>Now your result</h1>
 <p>Your word:<%= @shot %></p>
+<p>Your result:<%= @result %></p>
+
+
 
 
 <!-- <p>Time Taken to answer: <%= @result[:time] %> </p>
@@ -7,3 +16,5 @@
  <p>Translation: <%= @result[:translation] %> </p>
 <p>Your score: <%= @result[:score] %> </p>
 <p>Message: <%= @result[:message] %></p>
+
+<%= link_to "Encore!", game_path %>

@@ -7,6 +7,7 @@ class LongestgameController < ApplicationController
   def game
     @grid = generate_grid(10)
     @start_time = Time.now
+    session[:name] = "thierry"
   end
 
   def score
@@ -15,8 +16,17 @@ class LongestgameController < ApplicationController
     @start_time = Time.parse(params[:time])
     @end_time = Time.now
     @result = run_game(@shot, @grid, @start_time, @end_time)
+    (session[:results] ||= []) << @result[:score]
+
   end
 
+
+private
+
+  def current_user
+    @_current_user ||= session[:current_user_id] &&
+      User.find_by(id: session[:current_user_id])
+  end
 
   def generate_grid(grid_size)
     # TODO: generate random grid of letters
