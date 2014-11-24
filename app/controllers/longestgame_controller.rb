@@ -17,16 +17,15 @@ class LongestgameController < ApplicationController
     @end_time = Time.now
     @result = run_game(@shot, @grid, @start_time, @end_time)
     (session[:results] ||= []) << @result[:score]
-
   end
 
 
 private
 
-  def current_user
-    @_current_user ||= session[:current_user_id] &&
-      User.find_by(id: session[:current_user_id])
-  end
+  # def current_user
+  #   @_current_user ||= session[:current_user_id] &&
+  #     User.find_by(id: session[:current_user_id])
+  # end
 
   def generate_grid(grid_size)
     # TODO: generate random grid of letters
@@ -75,7 +74,7 @@ private
 
       else      # trouver la bonne donnee
         traduc_word = traduc_hash["term0"]["PrincipalTranslations"]["0"]["FirstTranslation"]["term"]
-        score = attempt.length.fdiv(9) * 1.fdiv(hash[:time])
+        score = (attempt.length.fdiv(9) * 1.fdiv(hash[:time]) *1_000).round
         return hash.merge(translation: traduc_word, score: score, message: "well done")
       end
 
